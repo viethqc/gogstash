@@ -6,15 +6,31 @@ go:
   - master
 
 env:
-  - GO111MODULE=on
+  - GO111MODULE=on ES_VERSION=7.2.0
 
 cache:
   directories:
-    - $HOME/.cache/go-build
-    - $HOME/gopath/pkg/mod
+    - ${HOME}/.cache/docker
+    - ${HOME}/.cache/go-build
+    - ${HOME}/gopath/pkg/mod
 
 install:
-  - gobuilder version -c ">=0.1.5" &>/dev/null || GO111MODULE=auto go get -u -v "github.com/tsaikd/gobuilder"
+  - |
+    if [ -f "${HOME}/.cache/docker/elasticsearch:${ES_VERSION}.gz" ]; then
+      docker load -i "${HOME}/.cache/docker/elasticsearch:${ES_VERSION}.gz"
+    fi
+  - docker run -d --rm -p 9200:9200 -e "discovery.type=single-node" "elasticsearch:${ES_VERSION}"
+  - |
+    if [ ! -f "${HOME}/.cache/docker/elasticsearch:${ES_VERSION}.gz" ]; then
+      mkdir -p "${HOME}/.cache/docker"
+      docker save "elasticsearch:${ES_VERSION}" | gzip -c > "${HOME}/.cache/docker/elasticsearch:${ES_VERSION}.gz"
+    fi
+  - |
+    until curl localhost:9200; do
+      echo "$(date) wait for elasticsearch"
+      sleep 3
+    done
+  - gobuilder version -c ">=0.1.5" &>/dev/null || go get -u -v "github.com/tsaikd/gobuilder"
 
 script:
   - gobuilder --all --check --test
