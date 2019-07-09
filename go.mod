@@ -60,6 +60,7 @@ require (
 	google.golang.org/appengine v1.5.0 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
+	gopkg.in/olivere/elastic.v2 v2.0.61
 	gopkg.in/olivere/elastic.v6 v6.2.17
 	gopkg.in/redis.v5 v5.2.9
 	gopkg.in/yaml.v2 v2.2.1

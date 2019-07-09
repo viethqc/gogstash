@@ -13,7 +13,7 @@ import (
 	"github.com/tsaikd/gogstash/config"
 	"github.com/tsaikd/gogstash/config/goglog"
 	"github.com/tsaikd/gogstash/config/logevent"
-	"gopkg.in/olivere/elastic.v6"
+	"gopkg.in/olivere/elastic.v2"
 )
 
 // ModuleName is the name used in config file
@@ -28,6 +28,7 @@ type OutputConfig struct {
 	DocumentType    string   `json:"document_type"`     // type name to log
 	DocumentID      string   `json:"document_id"`       // id to log, used if you want to control id format
 	RetryOnConflict int      `json:"retry_on_conflict"` // the number of times Elasticsearch should internally retry an update/upserted document
+	Action          string   `json:"action"`
 
 	Sniff bool `json:"sniff"` // find all nodes of your cluster, https://github.com/olivere/elastic/wiki/Sniffing
 
@@ -154,9 +155,8 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 		BulkActions(conf.BulkActions).
 		BulkSize(conf.BulkSize).
 		FlushInterval(conf.BulkFlushInterval).
-		Backoff(elastic.NewExponentialBackoff(conf.exponentialBackoffInitialTimeout, conf.exponentialBackoffMaxTimeout)).
 		After(conf.BulkAfter).
-		Do(ctx)
+		Do()
 	if err != nil {
 		return nil, err
 	}
@@ -170,8 +170,8 @@ func (t *OutputConfig) BulkAfter(executionID int64, requests []elastic.BulkableR
 		// find failed requests, and log it
 		for i, item := range response.Items {
 			for _, v := range item {
-				if v.Error != nil {
-					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error.Reason)
+				if v.Error != "" {
+					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
 				}
 			}
 		}
@@ -185,14 +185,27 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 	index = strings.ToLower(index)
 	doctype := event.Format(t.DocumentType)
 	id := event.Format(t.DocumentID)
+	action := event.Format(t.Action)
 
-	indexRequest := elastic.NewBulkIndexRequest().
-		Index(index).
-		RetryOnConflict(t.RetryOnConflict).
-		Type(doctype).
-		Id(id).
-		Doc(event)
-	t.processor.Add(indexRequest)
+	switch action {
+	case "index":
+		break
+		indexRequest := elastic.NewBulkIndexRequest().
+			Index(index).
+			Type(doctype).
+			Id(id).
+			Doc(event)
+		t.processor.Add(indexRequest)
+	case "update":
+		updateRequest := elastic.NewBulkUpdateRequest().
+			Index(index).
+			Type(doctype).
+			Id(id).
+			Doc(event)
+
+		t.processor.Add(updateRequest)
+		break
+	}
 
 	return
 }
