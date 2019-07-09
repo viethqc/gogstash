@@ -13,7 +13,7 @@ Logstash like, written in golang
 curl 'https://github.com/tsaikd/gogstash/releases/download/0.1.8/gogstash-Linux-x86_64' -SLo gogstash && chmod +x gogstash
 ```
 
-* Configure for ubuntu-sys.json (example)
+* Configure for demo-sys.json (example)
 ```
 {
 	"input": [
