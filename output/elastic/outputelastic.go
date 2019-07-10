@@ -2,7 +2,9 @@ package outputelastic
 
 import (
 	"context"
+	"crypto/sha1"
 	"crypto/tls"
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -32,8 +34,6 @@ type OutputConfig struct {
 
 	Sniff bool `json:"sniff"` // find all nodes of your cluster, https://github.com/olivere/elastic/wiki/Sniffing
 
-	// BulkActions specifies when to flush based on the number of actions
-	// currently added. Defaults to 1000 and can be set to -1 to be disabled.
 	BulkActions int `json:"bulk_actions,omitempty"`
 
 	// BulkSize specifies when to flush based on the size (in bytes) of the actions
@@ -60,8 +60,9 @@ type OutputConfig struct {
 	// For more information on disabling certificate verification please read https://www.cs.utexas.edu/~shmat/shmat_ccs12.pdf
 	SSLCertValidation bool `json:"ssl_certificate_validation,omitempty"`
 
-	client    *elastic.Client        // elastic client instance
-	processor *elastic.BulkProcessor // elastic bulk processor
+	client     *elastic.Client        // elastic client instance
+	processor  *elastic.BulkProcessor // elastic bulk processor
+	retryCount map[string]int
 }
 
 // DefaultOutputConfig returns an OutputConfig struct with default values
@@ -171,11 +172,35 @@ func (t *OutputConfig) BulkAfter(executionID int64, requests []elastic.BulkableR
 		for i, item := range response.Items {
 			for _, v := range item {
 				if v.Error != "" {
+
+					t.retry(requests[i].String(), v)
 					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
 				}
 			}
 		}
 	}
+}
+
+func (t *OutputConfig) retry(data string, errorInfo *elastic.BulkResponseItem) error {
+	status := errorInfo.Status
+
+	h := sha1.New()
+	h.Write([]byte(data))
+	bs := h.Sum(nil)
+	sha1_data := fmt.Sprintf("%x", bs)
+
+	goglog.Logger.Errorf("data: %s", data)
+	goglog.Logger.Errorf("status code: %d", status)
+	goglog.Logger.Errorf("sha1: %d", sha1_data)
+
+	if _, ok := t.retryCount[sha1_data]; ok {
+		//do something here
+		t.retryCount[sha1_data] += 1
+	} else {
+		t.retryCount[sha1_data] = 1
+	}
+
+	return nil
 }
 
 // Output event
