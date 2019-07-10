@@ -23,7 +23,6 @@ import (
 	inputfile "github.com/tsaikd/gogstash/input/file"
 	inputhttp "github.com/tsaikd/gogstash/input/http"
 	inputhttplisten "github.com/tsaikd/gogstash/input/httplisten"
-	inputrabbitmq "github.com/tsaikd/gogstash/input/inputrabbitmq"
 	inputlorem "github.com/tsaikd/gogstash/input/lorem"
 	inputredis "github.com/tsaikd/gogstash/input/redis"
 	inputsocket "github.com/tsaikd/gogstash/input/socket"
@@ -37,6 +36,8 @@ import (
 	outputredis "github.com/tsaikd/gogstash/output/redis"
 	outputreport "github.com/tsaikd/gogstash/output/report"
 	outputstdout "github.com/tsaikd/gogstash/output/stdout"
+
+	inputrabbitmq "github.com/tsaikd/gogstash/input/rabbitmq"
 )
 
 func init() {

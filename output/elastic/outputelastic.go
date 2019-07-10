@@ -189,18 +189,19 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 
 	switch action {
 	case "index":
-		break
 		indexRequest := elastic.NewBulkIndexRequest().
 			Index(index).
 			Type(doctype).
 			Id(id).
-			Doc(event)
+			Doc(event.Extra)
 		t.processor.Add(indexRequest)
+		break
 	case "update":
 		updateRequest := elastic.NewBulkUpdateRequest().
 			Index(index).
 			Type(doctype).
 			Id(id).
+			RetryOnConflict(100).
 			Doc(event)
 
 		t.processor.Add(updateRequest)

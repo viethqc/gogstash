@@ -1,0 +1,14 @@
+input:
+  - type: rabbitmq
+    host: localhost
+    port: 5672
+    queue: logging_update
+    username: malwarelab
+    password: malwarel4b
+output:
+  - type: elastic
+    url: ["http://localhost:9200"]
+    index: "logging%{+200601}"
+    document_type: "logs"
+    document_id: "%{message_id}"
+    action: update
