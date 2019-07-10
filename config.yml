@@ -12,3 +12,7 @@ output:
     document_type: "logs"
     document_id: "%{message_id}"
     action: update
+    retriable_code: [404]
+    retry_initial_interval: 10
+    bulk_flush_interval: 10
+

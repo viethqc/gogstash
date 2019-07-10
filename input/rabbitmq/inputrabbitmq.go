@@ -99,7 +99,7 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 
 	for {
 		msg := <-msgs
-
+		goglog.Logger.Info(string(msg.Body))
 		t.Codec.Decode(ctx, string(msg.Body), nil, msgChan)
 	}
 

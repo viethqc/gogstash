@@ -24,13 +24,14 @@ const ModuleName = "elastic"
 // OutputConfig holds the configuration json fields and internal objects
 type OutputConfig struct {
 	config.OutputConfig
-	URL             []string `json:"url"` // elastic API entrypoints
-	resolvedURLs    []string // URLs after resolving environment vars
-	Index           string   `json:"index"`             // index name to log
-	DocumentType    string   `json:"document_type"`     // type name to log
-	DocumentID      string   `json:"document_id"`       // id to log, used if you want to control id format
-	RetryOnConflict int      `json:"retry_on_conflict"` // the number of times Elasticsearch should internally retry an update/upserted document
-	Action          string   `json:"action"`
+	URL                  []string `json:"url"` // elastic API entrypoints
+	resolvedURLs         []string // URLs after resolving environment vars
+	Index                string   `json:"index"`             // index name to log
+	DocumentType         string   `json:"document_type"`     // type name to log
+	DocumentID           string   `json:"document_id"`       // id to log, used if you want to control id format
+	RetryOnConflict      int      `json:"retry_on_conflict"` // the number of times Elasticsearch should internally retry an update/upserted document
+	Action               string   `json:"action"`
+	RetryInitialInterval int      `json:"retry_initial_interval"`
 
 	Sniff bool `json:"sniff"` // find all nodes of your cluster, https://github.com/olivere/elastic/wiki/Sniffing
 
@@ -151,11 +152,13 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 		return nil, err
 	}
 
+	conf.retryCount = make(map[string]int)
+
 	conf.processor, err = conf.client.BulkProcessor().
 		Name("gogstash-output-elastic").
 		BulkActions(conf.BulkActions).
 		BulkSize(conf.BulkSize).
-		FlushInterval(conf.BulkFlushInterval).
+		FlushInterval(conf.BulkFlushInterval * time.Second).
 		After(conf.BulkAfter).
 		Do()
 	if err != nil {
@@ -172,9 +175,14 @@ func (t *OutputConfig) BulkAfter(executionID int64, requests []elastic.BulkableR
 		for i, item := range response.Items {
 			for _, v := range item {
 				if v.Error != "" {
+					data, err := requests[i].Source()
+					if err != nil {
+						goglog.Logger.Error(err)
+						continue
+					}
 
-					t.retry(requests[i].String(), v)
 					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
+					t.retry(data[1], v)
 				}
 			}
 		}
@@ -191,14 +199,33 @@ func (t *OutputConfig) retry(data string, errorInfo *elastic.BulkResponseItem) e
 
 	goglog.Logger.Errorf("data: %s", data)
 	goglog.Logger.Errorf("status code: %d", status)
-	goglog.Logger.Errorf("sha1: %d", sha1_data)
+	goglog.Logger.Errorf("sha1: %s", sha1_data)
 
 	if _, ok := t.retryCount[sha1_data]; ok {
-		//do something here
 		t.retryCount[sha1_data] += 1
 	} else {
 		t.retryCount[sha1_data] = 1
 	}
+
+	if t.retryCount[sha1_data] > t.RetryInitialInterval {
+		delete(t.retryCount, sha1_data)
+		return nil
+	}
+
+	event := logevent.LogEvent{
+		Timestamp: time.Now(),
+		Extra:     nil,
+	}
+
+	kk := make(map[string]interface{})
+	if err := jsoniter.Unmarshal([]byte(data), &kk); err != nil {
+		goglog.Logger.Error(err.Error())
+	}
+
+	event.Extra = kk["doc"].(map[string]interface{})
+
+	goglog.Logger.Infof("Retry number: %d", t.retryCount[sha1_data])
+	go t.Output(nil, event)
 
 	return nil
 }
@@ -226,8 +253,7 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 			Index(index).
 			Type(doctype).
 			Id(id).
-			RetryOnConflict(100).
-			Doc(event)
+			Doc(event.Extra)
 
 		t.processor.Add(updateRequest)
 		break

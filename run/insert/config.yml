@@ -3,8 +3,8 @@ input:
     host: localhost
     port: 5672
     queue: logging
-    username: malwarelab
-    password: malwarel4b
+    username: test
+    password: test
 output:
   - type: elastic
     url: ["http://localhost:9200"]
@@ -12,3 +12,7 @@ output:
     document_type: "logs"
     document_id: "%{message_id}"
     action: index
+    retriable_code: [404]
+    retry_initial_interval: 10
+    bulk_flush_interval: 10
+
