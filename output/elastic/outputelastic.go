@@ -32,6 +32,8 @@ type OutputConfig struct {
 	RetryOnConflict      int      `json:"retry_on_conflict"` // the number of times Elasticsearch should internally retry an update/upserted document
 	Action               string   `json:"action"`
 	RetryInitialInterval int      `json:"retry_initial_interval"`
+	RetryMaxInterval     int      `json:"retry_max_interval"`
+	RetriableCode        []int    `json:"retriable_code"`
 
 	Sniff bool `json:"sniff"` // find all nodes of your cluster, https://github.com/olivere/elastic/wiki/Sniffing
 
@@ -61,9 +63,10 @@ type OutputConfig struct {
 	// For more information on disabling certificate verification please read https://www.cs.utexas.edu/~shmat/shmat_ccs12.pdf
 	SSLCertValidation bool `json:"ssl_certificate_validation,omitempty"`
 
-	client     *elastic.Client        // elastic client instance
-	processor  *elastic.BulkProcessor // elastic bulk processor
-	retryCount map[string]int
+	client        *elastic.Client        // elastic client instance
+	processor     *elastic.BulkProcessor // elastic bulk processor
+	retryCount    map[string]int
+	retryableCode map[int]bool
 }
 
 // DefaultOutputConfig returns an OutputConfig struct with default values
@@ -153,6 +156,10 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 	}
 
 	conf.retryCount = make(map[string]int)
+	conf.retryableCode = make(map[int]bool)
+	for _, retryCode := range conf.RetriableCode {
+		conf.retryableCode[retryCode] = true
+	}
 
 	conf.processor, err = conf.client.BulkProcessor().
 		Name("gogstash-output-elastic").
@@ -182,7 +189,9 @@ func (t *OutputConfig) BulkAfter(executionID int64, requests []elastic.BulkableR
 					}
 
 					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
-					t.retry(data[1], v)
+					if _, ok := t.retryableCode[v.Status]; ok {
+						t.retry(data[1], v)
+					}
 				}
 			}
 		}
@@ -207,7 +216,10 @@ func (t *OutputConfig) retry(data string, errorInfo *elastic.BulkResponseItem) e
 		t.retryCount[sha1_data] = 1
 	}
 
+	goglog.Logger.Infof("Retry number: %d", t.retryCount[sha1_data])
+
 	if t.retryCount[sha1_data] > t.RetryInitialInterval {
+		goglog.Logger.Infof("Retry over quata")
 		delete(t.retryCount, sha1_data)
 		return nil
 	}
@@ -224,8 +236,11 @@ func (t *OutputConfig) retry(data string, errorInfo *elastic.BulkResponseItem) e
 
 	event.Extra = kk["doc"].(map[string]interface{})
 
-	goglog.Logger.Infof("Retry number: %d", t.retryCount[sha1_data])
-	go t.Output(nil, event)
+	ticker := time.NewTicker(time.Duration(t.RetryMaxInterval) * time.Second)
+	go func(ticker *time.Ticker) {
+		<-ticker.C
+		t.Output(nil, event)
+	}(ticker)
 
 	return nil
 }
