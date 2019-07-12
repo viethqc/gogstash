@@ -3,8 +3,8 @@ input:
     host: localhost
     port: 5672
     queue: logging_update
-    username: malwarelab
-    password: malwarel4b
+    username: test
+    password: test
 output:
   - type: elastic
     url: ["http://localhost:9200"]

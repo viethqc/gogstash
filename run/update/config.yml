@@ -13,6 +13,7 @@ output:
     document_id: "%{message_id}"
     action: update
     retriable_code: [404]
-    retry_initial_interval: 10
-    bulk_flush_interval: 10
-
+    retry_initial_interval: 3
+    retry_max_interval: 10
+    bulk_flush_interval: 60
+    bulk_actions: 5
