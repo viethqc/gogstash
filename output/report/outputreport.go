@@ -84,3 +84,7 @@ func (t *OutputConfig) report() {
 	}
 	return
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}

@@ -177,25 +177,46 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 
 // BulkAfter execute after a commit to Elasticsearch
 func (t *OutputConfig) BulkAfter(executionID int64, requests []elastic.BulkableRequest, response *elastic.BulkResponse, err error) {
-	if err == nil && response.Errors {
-		// find failed requests, and log it
-		for i, item := range response.Items {
-			for _, v := range item {
-				if v.Error != "" {
-					data, err := requests[i].Source()
-					if err != nil {
-						goglog.Logger.Error(err)
-						continue
-					}
+	if err == nil {
+		if response.Errors {
+			// find failed requests, and log it
+			for i, item := range response.Items {
+				for _, v := range item {
+					if v.Error != "" {
+						data, err := requests[i].Source()
+						if err != nil {
+							goglog.Logger.Error(err)
+							continue
+						}
 
-					goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
-					if _, ok := t.retryableCode[v.Status]; ok {
-						t.retry(data[1], v)
+						goglog.Logger.Errorf("%s: bulk processor request %s failed: %s", ModuleName, requests[i].String(), v.Error)
+						if _, ok := t.retryableCode[v.Status]; ok {
+							t.retry(data[1], v)
+						}
 					}
 				}
 			}
 		}
+	} else {
+		goglog.Logger.Errorf(err.Error())
 	}
+}
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	var bIsRunning bool
+
+	info, code, err := t.client.Ping().Do()
+	if err != nil {
+		bIsRunning = false
+		config.GetMutexInstance().SetPause(true)
+		fmt.Printf("%v... retrying", err)
+	} else {
+		bIsRunning = true
+		config.GetMutexInstance().SetPause(false)
+		fmt.Printf("Elasticsearch returned with code %d and version %s\n", code, info.Version.Number)
+	}
+
+	return bIsRunning, nil
 }
 
 func (t *OutputConfig) retry(data string, errorInfo *elastic.BulkResponseItem) error {

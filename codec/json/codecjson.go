@@ -2,6 +2,7 @@ package codecjson
 
 import (
 	"context"
+	"errors"
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
@@ -36,6 +37,10 @@ func InitHandler(context.Context, *config.ConfigRaw) (config.TypeCodecConfig, er
 func (c *Codec) Decode(ctx context.Context, data interface{},
 	eventExtra map[string]interface{},
 	msgChan chan<- logevent.LogEvent) (ok bool, err error) {
+
+	if config.GetMutexInstance().GetPause() == true {
+		return false, errors.New("Pause input")
+	}
 
 	event := logevent.LogEvent{
 		Timestamp: time.Now(),

@@ -79,3 +79,7 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 	err = dialer.DialAndSend(message)
 	return
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}

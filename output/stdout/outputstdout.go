@@ -48,3 +48,7 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 	fmt.Println(string(raw))
 	return
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}

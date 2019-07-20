@@ -86,7 +86,7 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 	msgs, err := ch.Consume(
 		q.Name, // queue
 		"",     // consumer
-		true,   // auto-ack
+		false,  // auto-ack
 		false,  // exclusive
 		false,  // no-local
 		false,  // no-wait
@@ -100,7 +100,11 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 	for {
 		msg := <-msgs
 		goglog.Logger.Info(string(msg.Body))
-		t.Codec.Decode(ctx, string(msg.Body), nil, msgChan)
+		if ok, err := t.Codec.Decode(ctx, string(msg.Body), nil, msgChan); ok == true && err == nil {
+			msg.Ack(false)
+		} else {
+			msg.Nack(false, true)
+		}
 	}
 
 	return nil

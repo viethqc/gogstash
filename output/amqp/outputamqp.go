@@ -158,6 +158,10 @@ func (o *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 	return
 }
 
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}
+
 func (o *OutputConfig) reconnect(url string) {
 	for {
 		select {

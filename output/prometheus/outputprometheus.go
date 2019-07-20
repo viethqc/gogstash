@@ -67,3 +67,7 @@ func (o *OutputConfig) serveHTTP() {
 		logger.Fatal(err)
 	}
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}

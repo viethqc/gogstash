@@ -104,3 +104,7 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 
 	return nil
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}

@@ -7,7 +7,7 @@ import (
 	"github.com/tsaikd/gogstash/config"
 	"github.com/tsaikd/gogstash/config/goglog"
 	"github.com/tsaikd/gogstash/config/logevent"
-	"github.com/tsaikd/gogstash/filter/cond"
+	filtercond "github.com/tsaikd/gogstash/filter/cond"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -107,4 +107,8 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 		}
 	}
 	return nil
+}
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
 }

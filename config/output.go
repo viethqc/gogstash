@@ -19,6 +19,7 @@ var (
 type TypeOutputConfig interface {
 	TypeCommonConfig
 	Output(ctx context.Context, event logevent.LogEvent) (err error)
+	IsRunning() (bool, error)
 }
 
 // OutputConfig is basic output config struct
@@ -68,6 +69,13 @@ func (t *Config) startOutputs() (err error) {
 
 	t.eg.Go(func() error {
 		for {
+
+			for _, output := range outputs {
+				if isRunning, err := output.IsRunning(); err == nil && isRunning == false {
+					goglog.Logger.Errorf("Output is dead: %s", output.GetType())
+				}
+			}
+
 			select {
 			case <-t.ctx.Done():
 				if len(t.chFilterOut) < 1 {

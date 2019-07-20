@@ -205,6 +205,10 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 	return
 }
 
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}
+
 func (t *OutputConfig) exists(filepath string) bool {
 	if _, err := t.fs.Stat(filepath); os.IsNotExist(err) {
 		return false

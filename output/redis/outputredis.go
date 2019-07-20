@@ -113,3 +113,7 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 		timeutil.ContextSleep(ctx, timeout)
 	}
 }
+
+func (t *OutputConfig) IsRunning() (bool, error) {
+	return true, nil
+}
