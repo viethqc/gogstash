@@ -3,6 +3,7 @@ package inputrabbitmq
 import (
 	"context"
 	"fmt"
+	"time"
 
 	//"github.com/tsaikd/KDGoLib/errutil"
 	"github.com/streadway/amqp"
@@ -17,12 +18,12 @@ const ModuleName = "rabbitmq"
 type InputConfig struct {
 	config.InputConfig
 
-	Host     string `json:"host"`
-	Port     int    `json:"port"`
-	Queue    string `json:"queue"`
-	Username string `json:"username"`
-	// SSL Verify, defaults to false
-	Password string `json:"password"`
+	Host          string `json:"host"`
+	Port          int    `json:"port"`
+	Queue         string `json:"queue"`
+	Username      string `json:"username"`
+	Password      string `json:"password"`
+	PrefetchCount int    `json:"prefetch_count"`
 }
 
 func DefaultInputConfig() InputConfig {
@@ -32,6 +33,7 @@ func DefaultInputConfig() InputConfig {
 				Type: ModuleName,
 			},
 		},
+		PrefetchCount: 1,
 	}
 }
 
@@ -83,6 +85,12 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 		return err
 	}
 
+	err = ch.Qos(
+		t.PrefetchCount, // prefetch count
+		0,               // prefetch size
+		false,           // global
+	)
+
 	msgs, err := ch.Consume(
 		q.Name, // queue
 		"",     // consumer
@@ -97,13 +105,13 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 		return err
 	}
 
-	for {
-		msg := <-msgs
+	for msg := range msgs {
 		goglog.Logger.Info(string(msg.Body))
 		if ok, err := t.Codec.Decode(ctx, string(msg.Body), nil, msgChan); ok == true && err == nil {
 			msg.Ack(false)
 		} else {
 			msg.Nack(false, true)
+			time.Sleep(5 * time.Second)
 		}
 	}
 
