@@ -122,15 +122,17 @@ func (t *Config) Start(ctx context.Context) (err error) {
 	ctx = contextWithOSSignal(ctx, goglog.Logger, os.Interrupt, os.Kill)
 	t.eg, t.ctx = errgroup.WithContext(ctx)
 
+	if err = t.startOutputs(); err != nil {
+		return
+	}
+
 	if err = t.startInputs(); err != nil {
 		return
 	}
 	if err = t.startFilters(); err != nil {
 		return
 	}
-	if err = t.startOutputs(); err != nil {
-		return
-	}
+
 	return
 }
 

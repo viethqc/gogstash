@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"time"
 
 	"github.com/tsaikd/KDGoLib/errutil"
 	"github.com/tsaikd/gogstash/config/goglog"
@@ -68,13 +69,8 @@ func (t *Config) startOutputs() (err error) {
 	}
 
 	t.eg.Go(func() error {
+		var bAllRunning bool
 		for {
-
-			for _, output := range outputs {
-				if isRunning, err := output.IsRunning(); err == nil && isRunning == false {
-					goglog.Logger.Errorf("Output is dead: %s", output.GetType())
-				}
-			}
 
 			select {
 			case <-t.ctx.Done():
@@ -99,6 +95,23 @@ func (t *Config) startOutputs() (err error) {
 				if t.chOutDebug != nil {
 					t.chOutDebug <- event
 				}
+			default:
+				bAllRunning = true
+				for _, output := range outputs {
+					if isRunning, err := output.IsRunning(); err == nil && isRunning == false {
+						goglog.Logger.Errorf("Output is dead: %s", output.GetType())
+						bAllRunning = false
+					}
+				}
+
+				if bAllRunning == true {
+					GetMutexInstance().SetPause(false)
+				} else {
+					GetMutexInstance().SetPause(true)
+					continue
+				}
+
+				time.Sleep(1 * time.Second)
 			}
 		}
 	})

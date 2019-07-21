@@ -208,11 +208,9 @@ func (t *OutputConfig) IsRunning() (bool, error) {
 	info, code, err := t.client.Ping().Do()
 	if err != nil {
 		bIsRunning = false
-		config.GetMutexInstance().SetPause(true)
 		fmt.Printf("%v... retrying", err)
 	} else {
 		bIsRunning = true
-		config.GetMutexInstance().SetPause(false)
 		fmt.Printf("Elasticsearch returned with code %d and version %s\n", code, info.Version.Number)
 	}
 

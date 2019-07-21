@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
+	github.com/TrueFurby/go-callvis v0.3.5 // indirect
 	github.com/alicebob/gopher-json v0.0.0-20180125190556-5a6b3ba71ee6 // indirect
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/bitly/go-hostpool v0.0.0-20171023180738-a3a6125de932
@@ -19,8 +20,10 @@ require (
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
 	github.com/hashicorp/go-version v1.2.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.1
+	github.com/hirokidaichi/goviz v0.0.0-20140425160843-c57591cb2ad9 // indirect
 	github.com/icza/dyno v0.0.0-20180601094105-0c96289f9585
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/jessevdk/go-flags v1.4.0 // indirect
 	github.com/jmoiron/sqlx v1.2.0 // indirect
 	github.com/json-iterator/go v1.1.6
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
