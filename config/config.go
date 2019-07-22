@@ -59,6 +59,7 @@ type MsgChan chan logevent.LogEvent
 
 // LoadFromFile load config from filepath
 func LoadFromFile(path string) (config Config, err error) {
+	goglog.Logger.Infoln("hello world")
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return config, ErrorReadConfigFile1.New(err, path)
