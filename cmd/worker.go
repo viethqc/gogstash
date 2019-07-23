@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/tsaikd/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/goglog"
 )
 
 func waitSignals(ctx context.Context) error {

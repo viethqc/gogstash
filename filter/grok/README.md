@@ -34,9 +34,9 @@ WORKDIR /src/build/
 RUN git clone https://github.com/k-takata/Onigmo.git --depth=1 \
   && cd Onigmo && ./configure && make && make install
 
-WORKDIR /go/src/github.com/tsaikd/gogstash
-COPY . /go/src/github.com/tsaikd/gogstash
-RUN sed -i -e 's/github.com\/vjeantet\/grok/github.com\/tengattack\/grok/' /go/src/github.com/tsaikd/gogstash/filter/grok/filtergrok.go \
+WORKDIR /go/src/github.com/viethqc/gogstash
+COPY . /go/src/github.com/viethqc/gogstash
+RUN sed -i -e 's/github.com\/vjeantet\/grok/github.com\/tengattack\/grok/' /go/src/github.com/viethqc/gogstash/filter/grok/filtergrok.go \
   && go get -d -v ./...
 RUN go build -ldflags "-X main.Version=$version"
 ```

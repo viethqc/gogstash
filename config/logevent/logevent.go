@@ -8,7 +8,7 @@ import (
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
-	"github.com/tsaikd/KDGoLib/jsonex"
+	"github.com/viethqc/gogstash/KDGoLib/jsonex"
 )
 
 type LogEvent struct {

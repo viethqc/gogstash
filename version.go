@@ -1,6 +1,6 @@
 package main
 
-import "github.com/tsaikd/KDGoLib/version"
+import "github.com/viethqc/gogstash/KDGoLib/version"
 
 var (
 	// Version for gogstash

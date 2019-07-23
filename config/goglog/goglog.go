@@ -1,46 +1,55 @@
 package goglog
 
 import (
+	"fmt"
+	"io"
 	"os"
 	"strings"
-	"io"
-	"fmt"
 
 	"github.com/sirupsen/logrus"
-	"github.com/tsaikd/KDGoLib/logrusutil"
-	"github.com/tsaikd/KDGoLib/runtimecaller"
+	"github.com/viethqc/gogstash/KDGoLib/logrusutil"
+	"github.com/viethqc/gogstash/KDGoLib/runtimecaller"
 )
 
 // Logger app logger
 var Logger = newLogger()
+var hostname, _ = os.Hostname()
 
 const timestampFormat = "2006/01/02 15:04:05"
 
 var logrusFormatter = &logrusutil.ConsoleLogFormatter{
 	TimestampFormat:      timestampFormat,
 	CallerOffset:         5,
+	LoggerName:           "malwarelab",
+	HostName:             hostname,
 	RuntimeCallerFilters: []runtimecaller.Filter{filterGoglogRuntimeCaller},
 }
 
 func filterGoglogRuntimeCaller(callinfo runtimecaller.CallInfo) (valid bool, stop bool) {
-	return !strings.Contains(callinfo.PackageName(), "github.com/tsaikd/gogstash/config/goglog"), false
+	return !strings.Contains(callinfo.PackageName(), "github.com/viethqc/gogstash/config/goglog"), false
 }
 
 func newLogger() *logrus.Logger {
 	logger := logrus.New()
 
-	// You could set this to any `io.Writer` such as a file
-	hFile, err := os.OpenFile("logrus.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	logFile := os.Args[0] + ".log"
+	hFile, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err == nil {
 		logger.Out = hFile
 	} else {
-		fmt.Errorf("Cannot init file log")
+		fmt.Errorf("%s", "Cannot init file log")
+		logger.Out = os.Stdout
 	}
 
-	logger.Out = os.Stdout
+	if hFile != nil {
+		mw := io.MultiWriter(os.Stdout, hFile)
+		logger.SetOutput(mw)
+	} else {
+		logger.SetOutput(os.Stdout)
+	}
 
-	mw := io.MultiWriter(os.Stdout, hFile)
-	logger.SetOutput(mw)
+	logger.SetFormatter(logrusFormatter)
+
 	return logger
 
 	// return &LoggerType{

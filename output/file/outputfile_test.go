@@ -10,10 +10,10 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/logevent"
-	fs "github.com/tsaikd/gogstash/output/file/filesystem"
-	mocks "github.com/tsaikd/gogstash/output/file/mocks"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/logevent"
+	fs "github.com/viethqc/gogstash/output/file/filesystem"
+	mocks "github.com/viethqc/gogstash/output/file/mocks"
 )
 
 func TestInvalidDefaultOutputConfig(t *testing.T) {

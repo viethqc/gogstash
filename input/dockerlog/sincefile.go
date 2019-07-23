@@ -5,8 +5,8 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/tsaikd/KDGoLib/futil"
-	"github.com/tsaikd/KDGoLib/mmfile"
+	"github.com/viethqc/gogstash/KDGoLib/futil"
+	"github.com/viethqc/gogstash/KDGoLib/mmfile"
 )
 
 func NewSinceFile(filepath string) (sincefile *SinceFile, err error) {

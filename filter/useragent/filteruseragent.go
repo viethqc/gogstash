@@ -5,8 +5,8 @@ import (
 	"errors"
 
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/logevent"
 	"github.com/ua-parser/uap-go/uaparser"
 )
 

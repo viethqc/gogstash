@@ -3,8 +3,8 @@ input:
     host: localhost
     port: 5672
     queue: logging_update
-    username: test
-    password: test
+    username: malwarelab
+    password: malwarel4b
     prefetch_count: 10
 output:
   - type: elastic

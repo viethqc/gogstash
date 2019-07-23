@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/icza/dyno"
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 // errors

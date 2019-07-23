@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"time"
 
-	//"github.com/tsaikd/KDGoLib/errutil"
+	//"github.com/viethqc/gogstash/KDGoLib/errutil"
 	"github.com/streadway/amqp"
-	codecjson "github.com/tsaikd/gogstash/codec/json"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	codecjson "github.com/viethqc/gogstash/codec/json"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 const ModuleName = "rabbitmq"

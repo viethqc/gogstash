@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/fsouza/go-dockerclient"
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/logevent"
-	"github.com/tsaikd/gogstash/input/dockerlog/dockertool"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/input/dockerlog/dockertool"
 	"golang.org/x/sync/errgroup"
 )
 

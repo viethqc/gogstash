@@ -6,9 +6,9 @@ import (
 
 	lru "github.com/hashicorp/golang-lru"
 	geoip2 "github.com/oschwald/geoip2-golang"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 // ModuleName is the name used in config file

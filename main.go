@@ -1,6 +1,6 @@
 package main
 
-import "github.com/tsaikd/gogstash/cmd"
+import "github.com/viethqc/gogstash/cmd"
 
 func main() {
 	cmd.Module.MustMainRun()

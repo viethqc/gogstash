@@ -9,7 +9,7 @@ import (
 
 	jsoniter "github.com/json-iterator/go"
 	log "github.com/sirupsen/logrus"
-	"github.com/tsaikd/KDGoLib/futil"
+	"github.com/viethqc/gogstash/KDGoLib/futil"
 )
 
 type SinceDBInfo struct {

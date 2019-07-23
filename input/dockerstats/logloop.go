@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/fsouza/go-dockerclient"
-	"github.com/tsaikd/gogstash/config/logevent"
-	"github.com/tsaikd/gogstash/input/dockerlog/dockertool"
+	"github.com/viethqc/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/input/dockerlog/dockertool"
 )
 
 var (

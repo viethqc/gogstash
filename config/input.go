@@ -3,8 +3,8 @@ package config
 import (
 	"context"
 
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 // errors

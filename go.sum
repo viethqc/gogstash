@@ -271,10 +271,10 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/tengattack/jodatime v0.0.0-20180920000830-48b203d08145 h1:XmkRMDnXzICJX94smlkOfQJoq4g8W+DePi/DK83zDY0=
 github.com/tengattack/jodatime v0.0.0-20180920000830-48b203d08145/go.mod h1:EWYxWPwYZw+UKzz4zr1MztZGgTiqHHI37AGItWh0E+I=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
-github.com/tsaikd/KDGoLib v0.0.0-20190103121848-9f98a0557044 h1:8ZUo6QpOqc4bBdcaCmRW3bC9OTQwNH0BfhKhMpbcgQw=
-github.com/tsaikd/KDGoLib v0.0.0-20190103121848-9f98a0557044/go.mod h1:2vi4S6kKBHFDv1ZKcgVWaH7K1iTMFOw3hyLTiFc6a8w=
-github.com/tsaikd/gogstash v0.0.0-20190704134643-33d6d60ef680 h1:aqiZ0fc9rADDnparNJb0TSIqieiFG1Fa/mjY+w3I9dY=
-github.com/tsaikd/gogstash v0.0.0-20190704134643-33d6d60ef680/go.mod h1:I3R1oiYSbZDqbliNU3L9ypEOGM1clv+2h+PxkUgMiss=
+github.com/viethqc/gogstash/KDGoLib v0.0.0-20190103121848-9f98a0557044 h1:8ZUo6QpOqc4bBdcaCmRW3bC9OTQwNH0BfhKhMpbcgQw=
+github.com/viethqc/gogstash/KDGoLib v0.0.0-20190103121848-9f98a0557044/go.mod h1:2vi4S6kKBHFDv1ZKcgVWaH7K1iTMFOw3hyLTiFc6a8w=
+github.com/viethqc/gogstash v0.0.0-20190704134643-33d6d60ef680 h1:aqiZ0fc9rADDnparNJb0TSIqieiFG1Fa/mjY+w3I9dY=
+github.com/viethqc/gogstash v0.0.0-20190704134643-33d6d60ef680/go.mod h1:I3R1oiYSbZDqbliNU3L9ypEOGM1clv+2h+PxkUgMiss=
 github.com/ua-parser/uap-go v0.0.0-20190303233514-1004ccd816b3 h1:E7xa7Zur8hLPvw+03gAeQ9esrglfV389j2PcwhiGf/I=
 github.com/ua-parser/uap-go v0.0.0-20190303233514-1004ccd816b3/go.mod h1:OBcG9bn7sHtXgarhUEb3OfCnNsgtGnkVf41ilSZ3K3E=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=

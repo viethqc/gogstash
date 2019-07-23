@@ -7,11 +7,11 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/tsaikd/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/goglog"
 
 	lorem "github.com/drhodes/golorem"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/logevent"
 	"golang.org/x/sync/errgroup"
 )
 

@@ -1,1 +1,4 @@
-time="2019-07-22T18:24:02+07:00" level=info msg="hello world"
+time="2019-07-23T09:15:36+07:00" level=info msg="hello world"
+time="2019-07-23T09:15:36+07:00" level=info msg="gogstash started..."
+time="2019-07-23T09:15:36+07:00" level=info msg="start rabbitmq"
+time="2019-07-23T09:15:39+07:00" level=info msg="Failed to connect to RabbitMQ: Exception (403) Reason: \"username or password not allowed\""

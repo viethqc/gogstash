@@ -7,7 +7,7 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/tsaikd/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/goglog"
 	"golang.org/x/sync/errgroup"
 )
 

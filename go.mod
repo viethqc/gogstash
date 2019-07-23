@@ -1,4 +1,4 @@
-module github.com/tsaikd/gogstash
+module github.com/viethqc/gogstash
 
 go 1.12
 
@@ -46,7 +46,7 @@ require (
 	github.com/streadway/amqp v0.0.0-20180528204448-e5adc2ada8b8
 	github.com/stretchr/testify v1.3.0
 	github.com/tengattack/jodatime v0.0.0-20180920000830-48b203d08145
-	github.com/tsaikd/KDGoLib v0.0.0-20190103121848-9f98a0557044
+	github.com/viethqc/gogstash/KDGoLib v0.0.0-20190103121848-9f98a0557044
 	github.com/ua-parser/uap-go v0.0.0-20190303233514-1004ccd816b3
 	github.com/vjeantet/grok v1.0.0
 	github.com/yuin/gopher-lua v0.0.0-20190514113301-1cd887cd7036 // indirect
