@@ -134,7 +134,7 @@ filter:
     conv_type: int64
     fields: ["bytes", "response"]
 
-output:
+output: 
   - type: elastic
     url: "http://elastic.server:9200"
     index: "log-nginx-%{+@2006-01-02}"
