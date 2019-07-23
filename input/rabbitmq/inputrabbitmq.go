@@ -106,7 +106,7 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 	}
 
 	for msg := range msgs {
-		goglog.Logger.Info(string(msg.Body))
+		RabbitmqLogger.Infoln(string(msg.Body))
 		if ok, err := t.Codec.Decode(ctx, string(msg.Body), nil, msgChan); ok == true && err == nil {
 			msg.Ack(false)
 		} else {

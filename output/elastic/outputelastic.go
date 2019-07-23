@@ -117,7 +117,7 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 	}
 
 	// map Printf to error level
-	logger := &errorLogger{logger: goglog.Logger}
+	logger := goglog.Logger
 
 	// replace env var names with values on URL config
 	for _, url := range conf.URL {

@@ -4,3 +4,135 @@
 2019/07/23 15:24:26 [malwarelab] [downloader-PC] [util.go:117][func1] [INFO]:  interrupt
 2019/07/23 15:24:47 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
 2019/07/23 15:32:02 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:34:12 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:37:22 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:38:24 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:00:56 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:31:28 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:32:21 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:55:56 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:56:19 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 16:56:19 [malwarelab] [downloader-PC] [gogstash.go:61][gogstash] [INFO]:  gogstash started...
+2019/07/23 16:56:19 [malwarelab] [downloader-PC] [inputrabbitmq.go:58][Start] [INFO]:  start rabbitmq
+2019/07/23 16:57:11 [malwarelab] [downloader-PC] [util.go:117][func1] [INFO]:  interrupt
+2019/07/23 17:11:43 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 17:11:44 [malwarelab] [downloader-PC] [gogstash.go:61][gogstash] [INFO]:  gogstash started...
+2019/07/23 17:11:44 [malwarelab] [downloader-PC] [inputrabbitmq.go:58][Start] [INFO]:  start rabbitmq
+2019/07/23 17:15:11 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:12 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:13 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:14 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:15 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:16 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:17 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:18 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:19 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:20 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:21 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:22 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:23 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:24 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:25 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:26 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:27 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:28 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:29 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:30 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:31 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:32 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:33 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:34 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:35 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:36 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:37 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:38 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:39 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:40 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:41 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:42 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:43 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:44 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:45 [malwarelab] [downloader-PC] [client.go:632][errorf] [INFO]:  elastic: http://localhost:9200 is dead
+2019/07/23 17:15:45 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:46 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:47 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:48 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:49 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:50 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:51 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:52 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:53 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:54 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:55 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:56 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:57 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:58 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:15:59 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:00 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:01 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:02 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:03 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:04 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:05 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:06 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:08 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:09 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:10 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:11 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:12 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:13 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:14 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:15 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:16 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:17 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:18 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:19 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:20 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:21 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:22 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:23 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:24 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:25 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:26 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:27 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:28 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:29 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:30 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:31 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:32 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:33 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:34 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:35 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:36 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:37 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:38 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:39 [malwarelab] [downloader-PC] [output.go:102][func1] [ERROR]:  Output is dead: elastic
+2019/07/23 17:16:46 [malwarelab] [downloader-PC] [util.go:117][func1] [INFO]:  interrupt
+2019/07/23 17:24:01 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 17:24:01 [malwarelab] [downloader-PC] [gogstash.go:61][gogstash] [INFO]:  gogstash started...
+2019/07/23 17:24:01 [malwarelab] [downloader-PC] [inputrabbitmq.go:58][Start] [INFO]:  start rabbitmq
+2019/07/23 17:36:53 [malwarelab] [downloader-PC] [outputelastic.go:192][BulkAfter] [ERROR]:  elastic: bulk processor request {"update":{"_id":"\u003c1563878375.05052495002746582031\u003e","_index":"logging201907","_type":"logs"}}
+{"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}} failed: DocumentMissingException[[logging201907][-1] [logs][<1563878375.05052495002746582031>]: document missing]
+2019/07/23 17:36:53 [malwarelab] [downloader-PC] [outputelastic.go:228][retry] [ERROR]:  data: {"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}}
+2019/07/23 17:36:53 [malwarelab] [downloader-PC] [outputelastic.go:229][retry] [ERROR]:  status code: 404
+2019/07/23 17:36:53 [malwarelab] [downloader-PC] [outputelastic.go:230][retry] [ERROR]:  sha1: 5227b924a13a7f5b06dfe632149d479688cd54ec
+2019/07/23 17:36:53 [malwarelab] [downloader-PC] [outputelastic.go:238][retry] [INFO]:  Retry number: 1
+2019/07/23 17:37:11 [malwarelab] [downloader-PC] [outputelastic.go:192][BulkAfter] [ERROR]:  elastic: bulk processor request {"update":{"_id":"\u003c1563878375.05052495002746582031\u003e","_index":"logging201907","_type":"logs"}}
+{"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}} failed: DocumentMissingException[[logging201907][-1] [logs][<1563878375.05052495002746582031>]: document missing]
+2019/07/23 17:37:11 [malwarelab] [downloader-PC] [outputelastic.go:228][retry] [ERROR]:  data: {"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}}
+2019/07/23 17:37:11 [malwarelab] [downloader-PC] [outputelastic.go:229][retry] [ERROR]:  status code: 404
+2019/07/23 17:37:11 [malwarelab] [downloader-PC] [outputelastic.go:230][retry] [ERROR]:  sha1: 5227b924a13a7f5b06dfe632149d479688cd54ec
+2019/07/23 17:37:11 [malwarelab] [downloader-PC] [outputelastic.go:238][retry] [INFO]:  Retry number: 2
+2019/07/23 17:37:31 [malwarelab] [downloader-PC] [outputelastic.go:192][BulkAfter] [ERROR]:  elastic: bulk processor request {"update":{"_id":"\u003c1563878375.05052495002746582031\u003e","_index":"logging201907","_type":"logs"}}
+{"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}} failed: DocumentMissingException[[logging201907][-1] [logs][<1563878375.05052495002746582031>]: document missing]
+2019/07/23 17:37:31 [malwarelab] [downloader-PC] [outputelastic.go:228][retry] [ERROR]:  data: {"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}}
+2019/07/23 17:37:31 [malwarelab] [downloader-PC] [outputelastic.go:229][retry] [ERROR]:  status code: 404
+2019/07/23 17:37:31 [malwarelab] [downloader-PC] [outputelastic.go:230][retry] [ERROR]:  sha1: 5227b924a13a7f5b06dfe632149d479688cd54ec
+2019/07/23 17:37:31 [malwarelab] [downloader-PC] [outputelastic.go:238][retry] [INFO]:  Retry number: 3
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:192][BulkAfter] [ERROR]:  elastic: bulk processor request {"update":{"_id":"\u003c1563878375.05052495002746582031\u003e","_index":"logging201907","_type":"logs"}}
+{"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}} failed: DocumentMissingException[[logging201907][-1] [logs][<1563878375.05052495002746582031>]: document missing]
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:228][retry] [ERROR]:  data: {"doc":{"end":"2019-07-23T17:39:54","message_id":"\u003c1563878375.05052495002746582031\u003e","status":"DROP"}}
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:229][retry] [ERROR]:  status code: 404
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:230][retry] [ERROR]:  sha1: 5227b924a13a7f5b06dfe632149d479688cd54ec
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:238][retry] [INFO]:  Retry number: 4
+2019/07/23 17:37:51 [malwarelab] [downloader-PC] [outputelastic.go:241][retry] [INFO]:  Retry over quata

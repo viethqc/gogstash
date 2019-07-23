@@ -12,42 +12,43 @@ import (
 )
 
 // Logger app logger
-var Logger = newLogger("malwarelab", "gogstash.log")
+var Logger = NewLogger("malwarelab", true, "gogstash.log")
 var hostname, _ = os.Hostname()
 
 const timestampFormat = "2006/01/02 15:04:05"
-
-var logrusFormatter = &logrusutil.ConsoleLogFormatter{
-	TimestampFormat:      timestampFormat,
-	CallerOffset:         5,
-	LoggerName:           "malwarelab",
-	HostName:             hostname,
-	RuntimeCallerFilters: []runtimecaller.Filter{filterGoglogRuntimeCaller},
-}
 
 func filterGoglogRuntimeCaller(callinfo runtimecaller.CallInfo) (valid bool, stop bool) {
 	return !strings.Contains(callinfo.PackageName(), "github.com/viethqc/gogstash/config/goglog"), false
 }
 
-func newLogger(loggerName string, fileName string) *logrus.Logger {
+func NewLogger(loggerName string, useConsoleLog bool, fileName string) *logrus.Logger {
+	var hFile io.Writer
+	var err error
 	logger := logrus.New()
 
-	hFile, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	if err == nil {
-		logger.Out = hFile
+	if fileName == "" {
+		hFile = nil
 	} else {
-		fmt.Errorf("%s", "Cannot init file log")
-		logger.Out = os.Stdout
+		hFile, err = os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		if err != nil {
+			fmt.Errorf("Init loggger file error")
+			return nil
+		}
+	}
+
+	var writer []io.Writer
+	if useConsoleLog == true {
+		writer = append(writer, os.Stdout)
 	}
 
 	if hFile != nil {
-		mw := io.MultiWriter(os.Stdout, hFile)
-		logger.SetOutput(mw)
-	} else {
-		logger.SetOutput(os.Stdout)
+		writer = append(writer, hFile)
 	}
 
-	logrusFormatter = &logrusutil.ConsoleLogFormatter{
+	mw := io.MultiWriter(writer...)
+	logger.SetOutput(mw)
+
+	logrusFormatter := &logrusutil.ConsoleLogFormatter{
 		TimestampFormat:      timestampFormat,
 		CallerOffset:         5,
 		LoggerName:           loggerName,
