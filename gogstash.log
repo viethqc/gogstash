@@ -1,0 +1,6 @@
+2019/07/23 15:22:24 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:22:37 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:24:20 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:24:26 [malwarelab] [downloader-PC] [util.go:117][func1] [INFO]:  interrupt
+2019/07/23 15:24:47 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world
+2019/07/23 15:32:02 [malwarelab] [downloader-PC] [config.go:62][LoadFromFile] [INFO]:  hello world

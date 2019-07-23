@@ -3,14 +3,12 @@ package logrusutil
 import (
 	"bytes"
 	"fmt"
-	"path/filepath"
-	"runtime"
 	"strings"
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/viethqc/KDGoLib/errutil"
-	"github.com/viethqc/KDGoLib/runtimecaller"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/KDGoLib/runtimecaller"
 )
 
 // flags
@@ -45,6 +43,15 @@ func filterLogrusRuntimeCaller(callinfo runtimecaller.CallInfo) (valid bool, sto
 	return !strings.Contains(callinfo.PackageName(), "github.com/sirupsen/logrus"), false
 }
 
+func (t *ConsoleLogFormatter) getFunctionName(functionName string) string {
+	arrData := strings.Split(functionName, ".")
+	if len(arrData) != 0 {
+		return arrData[len(arrData)-1]
+	}
+
+	return ""
+}
+
 // Format output logrus entry
 func (t *ConsoleLogFormatter) Format(entry *logrus.Entry) (data []byte, err error) {
 	buffer := bytes.Buffer{}
@@ -67,25 +74,6 @@ func (t *ConsoleLogFormatter) Format(entry *logrus.Entry) (data []byte, err erro
 		}
 	}
 
-	if t.Flag&(Lshortfile|Llongfile) != 0 {
-		var filelinetext string
-		filters := append([]runtimecaller.Filter{filterLogrusRuntimeCaller}, t.RuntimeCallerFilters...)
-		if callinfo, ok := errutil.RuntimeCaller(1+t.CallerOffset, filters...); ok {
-			if t.Flag&Lshortfile != 0 {
-				filelinetext = fmt.Sprintf("[%s:%d]", callinfo.FileName(), callinfo.Line())
-			} else {
-				filelinetext = fmt.Sprintf("[%s/%s:%d]", callinfo.PackageName(), callinfo.FileName(), callinfo.Line())
-			}
-
-			filelinetext, addspaceflag = addspace(filelinetext, addspaceflag)
-		}
-
-		if _, err = buffer.WriteString(filelinetext); err != nil {
-			err = errutil.New("write fileline to buffer failed", err)
-			return
-		}
-	}
-
 	if t.Flag&Lloggername != 0 {
 		loggerNameText := fmt.Sprintf("[%s]", t.LoggerName)
 		loggerNameText, addspaceflag = addspace(loggerNameText, addspaceflag)
@@ -104,43 +92,32 @@ func (t *ConsoleLogFormatter) Format(entry *logrus.Entry) (data []byte, err erro
 		}
 	}
 
+	if t.Flag&(Lshortfile|Llongfile) != 0 {
+		var filelinetext string
+		filters := append([]runtimecaller.Filter{filterLogrusRuntimeCaller}, t.RuntimeCallerFilters...)
+		if callinfo, ok := errutil.RuntimeCaller(1+t.CallerOffset, filters...); ok {
+			if t.Flag&Lshortfile != 0 {
+				filelinetext = fmt.Sprintf("[%s:%d][%s]", callinfo.FileName(), callinfo.Line(), t.getFunctionName(callinfo.PCFunc().Name()))
+			} else {
+				filelinetext = fmt.Sprintf("[%s/%s:%d][%s]", callinfo.PackageName(), callinfo.FileName(), callinfo.Line())
+			}
+
+			filelinetext, addspaceflag = addspace(filelinetext, addspaceflag)
+		}
+
+		if _, err = buffer.WriteString(filelinetext); err != nil {
+			err = errutil.New("write fileline to buffer failed", err)
+			return
+		}
+	}
+
 	if t.Flag&Llevel != 0 {
-		leveltext := fmt.Sprintf("[%s]", entry.Level.String())
+		leveltext := fmt.Sprintf("[%s]: ", strings.ToUpper(entry.Level.String()))
 		leveltext, addspaceflag = addspace(leveltext, addspaceflag)
 		if _, err = buffer.WriteString(leveltext); err != nil {
 			err = errutil.New("write level to buffer failed", err)
 			return
 		}
-	}
-
-	f := ""
-	l := 0
-	fn := ""
-	fnName := ""
-	if pc, file, line, ok := runtime.Caller(2); ok {
-		f = file
-		l = line
-		fun := runtime.FuncForPC(pc)
-		fn = fun.Name()
-		fnName = filepath.Ext(fn)
-
-		for i := len(file) - 1; i > 0; i-- {
-			if file[i] == '/' {
-				f = file[i+1:]
-				break
-			}
-		}
-
-		if len(fnName) > 0 && fnName[0] == '.' {
-			fnName = fnName[1:]
-		}
-	}
-
-	fileText := fmt.Sprintf("[%s:%d]", f, l)
-	fileText, addspaceflag = addspace(fileText, addspaceflag)
-	if _, err = buffer.WriteString(fileText); err != nil {
-		err = errutil.New("write level to buffer failed", err)
-		return
 	}
 
 	message := entry.Message

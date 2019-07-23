@@ -12,7 +12,7 @@ import (
 )
 
 // Logger app logger
-var Logger = newLogger()
+var Logger = newLogger("malwarelab", "gogstash.log")
 var hostname, _ = os.Hostname()
 
 const timestampFormat = "2006/01/02 15:04:05"
@@ -29,11 +29,10 @@ func filterGoglogRuntimeCaller(callinfo runtimecaller.CallInfo) (valid bool, sto
 	return !strings.Contains(callinfo.PackageName(), "github.com/viethqc/gogstash/config/goglog"), false
 }
 
-func newLogger() *logrus.Logger {
+func newLogger(loggerName string, fileName string) *logrus.Logger {
 	logger := logrus.New()
 
-	logFile := os.Args[0] + ".log"
-	hFile, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	hFile, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err == nil {
 		logger.Out = hFile
 	} else {
@@ -46,6 +45,14 @@ func newLogger() *logrus.Logger {
 		logger.SetOutput(mw)
 	} else {
 		logger.SetOutput(os.Stdout)
+	}
+
+	logrusFormatter = &logrusutil.ConsoleLogFormatter{
+		TimestampFormat:      timestampFormat,
+		CallerOffset:         5,
+		LoggerName:           loggerName,
+		HostName:             hostname,
+		RuntimeCallerFilters: []runtimecaller.Filter{filterGoglogRuntimeCaller},
 	}
 
 	logger.SetFormatter(logrusFormatter)
