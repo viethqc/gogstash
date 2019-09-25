@@ -171,7 +171,7 @@ func (o *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 			false,
 			false,
 			amqp.Publishing{
-				ContentType: "application/text",
+				ContentType: "application/json",
 				Body:        raw,
 			},
 		); err != nil {

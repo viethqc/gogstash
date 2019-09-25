@@ -26,6 +26,9 @@ type OutputConfig struct {
 	DataType          string   `json:"data_type,omitempty"` // one of ["list", "channel"]
 	Timeout           int      `json:"timeout,omitempty"`
 	ReconnectInterval int      `json:"reconnect_interval,omitempty"`
+	Password          string   `json:"password,omitempty"`
+	Db                int      `json:"db,omitempty"`
+	Ttl               int      `json:"ttl,omitempty"`
 	Connections       int      `json:"connections"` // maximum number of socket connections, default: 10
 
 	client *redis.Client
@@ -69,6 +72,8 @@ func InitHandler(ctx context.Context, raw *config.ConfigRaw) (config.TypeOutputC
 
 	conf.client = redis.NewClient(&redis.Options{
 		Addr:     conf.Host[0],
+		Password: conf.Password, // no password set
+		DB:       conf.Db,       // use default DB
 		PoolSize: conf.Connections,
 	})
 
@@ -103,6 +108,10 @@ func (t *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 			}
 		case "channel":
 			if _, err = t.client.Publish(key, string(raw)).Result(); err == nil {
+				return
+			}
+		case "key-value":
+			if _, err = t.client.Set(key, string(raw), time.Duration(t.Ttl)*time.Second).Result(); err == nil {
 				return
 			}
 		default:

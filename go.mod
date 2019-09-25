@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go v0.38.0
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/TrueFurby/go-callvis v0.3.5 // indirect
+	github.com/alicebob/gopher-json v0.0.0-20180125190556-5a6b3ba71ee6 // indirect
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/bitly/go-hostpool v0.0.0-20171023180738-a3a6125de932
 	github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0
@@ -18,6 +19,7 @@ require (
 	github.com/go-martini/martini v0.0.0-20170121215854-22fa46961aab
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/golang/mock v1.3.1
+	github.com/gomodule/redigo v2.0.0+incompatible // indirect
 	github.com/googleapis/gax-go v2.0.2+incompatible // indirect
 	github.com/hashicorp/go-version v1.2.0
 	github.com/hashicorp/golang-lru v0.5.1

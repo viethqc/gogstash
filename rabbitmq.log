@@ -1,1 +1,13 @@
 2019/07/23 17:36:43 [malwarelab] [downloader-PC] [inputrabbitmq.go:109][Start] [INFO]:  {"status": "DROP", "end": "2019-07-23T17:39:54", "message_id": "<1563878375.05052495002746582031>"}
+2019/09/26 00:17:55 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk": "1"}
+2019/09/26 00:20:10 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk": "2"}
+2019/09/26 00:25:08 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk": "2"}
+2019/09/26 00:40:35 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk":"2",
+  "sha1": "1"
+}
+2019/09/26 00:42:38 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk":"3",
+  "sha1": "1"
+}
+2019/09/26 00:43:05 [malwarelab] [viethq] [inputrabbitmq.go:109][Start] [INFO]:  {"kk":"3",
+  "sha1": "2"
+}

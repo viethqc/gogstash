@@ -1,16 +1,37 @@
+# input:
+#   - type: redis
+#     host: localhost:6379
+#     key:  hello
+#     connections: 1
+
+# output:
+#   - type: amqp
+#     urls: ["amqp://test:test@localhost:5672/"]
+#     exchange: logs_direct
+#     exchange_type: "fanout"
+#     exchange_durable: true
+#     exchange_auto_delete: false
+#     bind_queues: ["hh", "kk"]
+#     queue_durable: true
+
+event:
+  remove_field: ['@timestamp']
+
+
 input:
-  - type: redis
-    host: localhost:6379
-    key:  hello
-    connections: 1
+  - type: rabbitmq
+    host: localhost
+    port: 5672
+    queue: hello
+    username: test
+    password: test
+    prefetch_count: 10
 
 output:
-  - type: amqp
-    urls: ["amqp://test:test@localhost:5672/"]
-    exchange: logs_direct
-    exchange_type: "fanout"
-    exchange_durable: true
-    exchange_auto_delete: false
-    bind_queues: ["hh", "kk"]
-    queue_durable: true
-
+  - type: redis
+    key: "%{sha1}"
+    data_type: key-value
+    host: ["localhost:6379"]
+    password: ""
+    db: 1
+    ttl: 300
