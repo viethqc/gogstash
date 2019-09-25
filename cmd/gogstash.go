@@ -6,15 +6,15 @@ import (
 	"runtime"
 
 	"github.com/sirupsen/logrus"
-	"github.com/tsaikd/KDGoLib/futil"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/KDGoLib/futil"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
 
 	// load pprof module
 	_ "net/http/pprof"
 
 	// module loader
-	_ "github.com/tsaikd/gogstash/modloader"
+	_ "github.com/viethqc/gogstash/modloader"
 )
 
 func gogstash(

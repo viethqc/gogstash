@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/spf13/cobra"
-	"github.com/tsaikd/KDGoLib/cliutil/cobrather"
+	"github.com/viethqc/gogstash/KDGoLib/cliutil/cobrather"
 )
 
 // command line flags

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/tsaikd/KDGoLib/futil"
+	"github.com/viethqc/gogstash/KDGoLib/futil"
 )
 
 func NewSinceDB(dbdir string) (sincedb *SinceDB, err error) {

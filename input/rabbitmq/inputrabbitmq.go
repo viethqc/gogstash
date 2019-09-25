@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"time"
 
-	//"github.com/tsaikd/KDGoLib/errutil"
+	//"github.com/viethqc/gogstash/KDGoLib/errutil"
 	"github.com/streadway/amqp"
-	codecjson "github.com/tsaikd/gogstash/codec/json"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	codecjson "github.com/viethqc/gogstash/codec/json"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 const ModuleName = "rabbitmq"
@@ -106,7 +106,7 @@ func (t *InputConfig) Start(ctx context.Context, msgChan chan<- logevent.LogEven
 	}
 
 	for msg := range msgs {
-		goglog.Logger.Info(string(msg.Body))
+		RabbitmqLogger.Infoln(string(msg.Body))
 		if ok, err := t.Codec.Decode(ctx, string(msg.Body), nil, msgChan); ok == true && err == nil {
 			msg.Ack(false)
 		} else {

@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/tsaikd/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
 )
 
 // errors

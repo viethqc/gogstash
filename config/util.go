@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/icza/dyno"
-	"github.com/tsaikd/KDGoLib/logutil"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/logutil"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 // ReflectConfig set conf from confraw

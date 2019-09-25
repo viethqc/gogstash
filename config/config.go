@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 	"golang.org/x/sync/errgroup"
 	yaml "gopkg.in/yaml.v2"
 )

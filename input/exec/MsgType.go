@@ -3,7 +3,7 @@ package inputexec
 import (
 	"database/sql/driver"
 
-	"github.com/tsaikd/KDGoLib/enumutil"
+	"github.com/viethqc/gogstash/KDGoLib/enumutil"
 )
 
 type MsgType int8

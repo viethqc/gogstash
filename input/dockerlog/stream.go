@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 func NewContainerLogStream(msgChan chan<- logevent.LogEvent, id string, eventExtra map[string]interface{}, since *time.Time, logger *logrus.Logger) ContainerLogStream {

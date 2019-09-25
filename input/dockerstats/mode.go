@@ -1,6 +1,6 @@
 package inputdockerstats
 
-import "github.com/tsaikd/KDGoLib/enumutil"
+import "github.com/viethqc/gogstash/KDGoLib/enumutil"
 
 // Mode enum for docker stats log mode
 type Mode int8

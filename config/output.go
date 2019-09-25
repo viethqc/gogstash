@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -111,7 +111,7 @@ func (t *Config) startOutputs() (err error) {
 					continue
 				}
 
-				time.Sleep(1 * time.Second)
+				time.Sleep(5 * time.Second)
 			}
 		}
 	})

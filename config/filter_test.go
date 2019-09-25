@@ -3,7 +3,7 @@ package config
 import (
 	"context"
 	"github.com/stretchr/testify/assert"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/config/logevent"
 	"strings"
 	"testing"
 )

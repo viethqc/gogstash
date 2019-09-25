@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	codecjson "github.com/tsaikd/gogstash/codec/json"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	codecjson "github.com/viethqc/gogstash/codec/json"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 )
 
 // ModuleName is the name used in config file

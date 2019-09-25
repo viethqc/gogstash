@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/Knetic/govaluate"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
-	filtercond "github.com/tsaikd/gogstash/filter/cond"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
+	filtercond "github.com/viethqc/gogstash/filter/cond"
 	"golang.org/x/sync/errgroup"
 )
 

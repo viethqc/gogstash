@@ -6,7 +6,7 @@ package mock_filesystem
 
 import (
 	gomock "github.com/golang/mock/gomock"
-	filesystem "github.com/tsaikd/gogstash/output/file/filesystem"
+	filesystem "github.com/viethqc/gogstash/output/file/filesystem"
 	os "os"
 	reflect "reflect"
 )

@@ -11,11 +11,11 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/KDGoLib/futil"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/KDGoLib/futil"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -392,7 +392,7 @@ func waitWatchEvent(ctx context.Context, fpath string, op fsnotify.Op) (event fs
 }
 
 func evalSymlinks(ctx context.Context, path string) (string, error) {
-	// https://github.com/tsaikd/gogstash/issues/30
+	// https://github.com/viethqc/gogstash/issues/30
 	for retry := 5; retry > 0; retry-- {
 		if futil.IsExist(path) {
 			break

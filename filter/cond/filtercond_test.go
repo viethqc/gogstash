@@ -2,7 +2,7 @@ package filtercond
 
 import (
 	"context"
-	filtermutate "github.com/tsaikd/gogstash/filter/mutate"
+	filtermutate "github.com/viethqc/gogstash/filter/mutate"
 	"strings"
 	"testing"
 	"time"
@@ -10,10 +10,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
-	"github.com/tsaikd/gogstash/filter/addfield"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/filter/addfield"
 )
 
 func init() {

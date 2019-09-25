@@ -12,9 +12,9 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	codecjson "github.com/tsaikd/gogstash/codec/json"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
+	codecjson "github.com/viethqc/gogstash/codec/json"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
 )
 
 var s *miniredis.Miniredis

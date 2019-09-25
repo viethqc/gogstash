@@ -8,11 +8,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/tsaikd/KDGoLib/errutil"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
-	fs "github.com/tsaikd/gogstash/output/file/filesystem"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
+	fs "github.com/viethqc/gogstash/output/file/filesystem"
 )
 
 const (

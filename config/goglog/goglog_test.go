@@ -9,8 +9,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tsaikd/KDGoLib/logrusutil"
-	"github.com/tsaikd/KDGoLib/runtimecaller"
+	"github.com/viethqc/gogstash/KDGoLib/logrusutil"
+	"github.com/viethqc/gogstash/KDGoLib/runtimecaller"
 )
 
 func (t *LoggerType) setDebugOutput(stdout io.Writer, stderr io.Writer) {
@@ -75,7 +75,7 @@ func TestLoggerFileLine(t *testing.T) {
 }
 
 func forTestFilterGoglogRuntimeCaller(callinfo runtimecaller.CallInfo) (valid bool, stop bool) {
-	if strings.Contains(callinfo.PackageName(), "github.com/tsaikd/gogstash/config/goglog") {
+	if strings.Contains(callinfo.PackageName(), "github.com/viethqc/gogstash/config/goglog") {
 		if callinfo.FileName() == "goglog_test.go" {
 			return true, false
 		}

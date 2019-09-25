@@ -4,7 +4,7 @@ MAINTAINER tsaikd <tsaikd@gmail.com>
 
 ENV GOGSTASH_VERSION 0.1.17
 
-ADD https://github.com/tsaikd/gogstash/releases/download/${GOGSTASH_VERSION}/gogstash-Linux-x86_64 /usr/local/bin/gogstash
+ADD https://github.com/viethqc/gogstash/releases/download/${GOGSTASH_VERSION}/gogstash-Linux-x86_64 /usr/local/bin/gogstash
 
 RUN chmod +x /usr/local/bin/gogstash
 

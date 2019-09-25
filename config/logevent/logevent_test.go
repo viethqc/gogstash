@@ -9,7 +9,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tsaikd/KDGoLib/jsonex"
+	"github.com/viethqc/gogstash/KDGoLib/jsonex"
 )
 
 func Test_FormatWithEnv(t *testing.T) {

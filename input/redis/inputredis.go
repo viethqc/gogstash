@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tsaikd/KDGoLib/errutil"
-	codecjson "github.com/tsaikd/gogstash/codec/json"
-	"github.com/tsaikd/gogstash/config"
-	"github.com/tsaikd/gogstash/config/goglog"
-	"github.com/tsaikd/gogstash/config/logevent"
+	"github.com/viethqc/gogstash/KDGoLib/errutil"
+	codecjson "github.com/viethqc/gogstash/codec/json"
+	"github.com/viethqc/gogstash/config"
+	"github.com/viethqc/gogstash/config/goglog"
+	"github.com/viethqc/gogstash/config/logevent"
 	"gopkg.in/redis.v5"
 )
 
