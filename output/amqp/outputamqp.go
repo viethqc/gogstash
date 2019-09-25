@@ -40,7 +40,9 @@ type OutputConfig struct {
 	ExchangeAutoDelete bool     `json:"exchange_auto_delete,omitempty"` // Whether the exchange is deleted when all queues have finished and there is no publishing. Defaults to true.
 	Persistent         bool     `json:"persistent,omitempty"`           // Whether published messages should be marked as persistent or transient. Defaults to false.
 	Retries            int      `json:"retries,omitempty"`              // Number of attempts to send a message. Defaults to 3.
-	ReconnectDelay     int      `json:"reconnect_delay,omitempty"`      // Delay between each attempt to reconnect to AMQP server. Defaults to 30 seconds.
+	ReconnectDelay     int      `json:"reconnect_delay,omitempty"`      // Delay between each attempt to reconnect to AMQP server. Defaults to 30 seconds.\
+	BindQueues         []string `json:"bind_queues,omitemp"`
+	QueueDurable       bool     `json:"queue_durable,omitempty"`
 	hostPool           hostpool.HostPool
 	amqpClients        map[string]amqpClient
 }
@@ -107,6 +109,31 @@ func (o *OutputConfig) initAmqpClients() error {
 				if err != nil {
 					return err
 				}
+
+				for i := 0; i < len(o.BindQueues); i++ {
+					q, err := ch.QueueDeclare(
+						o.BindQueues[i], // name
+						o.QueueDurable,  // durable
+						false,           // delete when unused
+						false,           // exclusive
+						false,           // no-wait
+						nil,             // arguments
+					)
+					if err != nil {
+						return err
+					}
+
+					err = ch.QueueBind(
+						q.Name,       // queue name
+						o.RoutingKey, // routing key
+						o.Exchange,   // exchange
+						false,
+						nil)
+					if err != nil {
+						return err
+					}
+				}
+
 				o.amqpClients[url] = amqpClient{
 					client:    ch,
 					reconnect: make(chan hostpool.HostPoolResponse, 1),
@@ -144,7 +171,7 @@ func (o *OutputConfig) Output(ctx context.Context, event logevent.LogEvent) (err
 			false,
 			false,
 			amqp.Publishing{
-				ContentType: "application/json",
+				ContentType: "application/text",
 				Body:        raw,
 			},
 		); err != nil {

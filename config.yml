@@ -1,20 +1,16 @@
 input:
-  - type: rabbitmq
-    host: localhost
-    port: 5672
-    queue: logging_update
-    username: test
-    password: test
-    prefetch_count: 10
+  - type: redis
+    host: localhost:6379
+    key:  hello
+    connections: 1
+
 output:
-  - type: elastic
-    url: ["http://localhost:9200"]
-    index: "logging%{+200601}"
-    document_type: "logs"
-    document_id: "%{message_id}"
-    action: update
-    retriable_code: [404]
-    retry_initial_interval: 3
-    retry_max_interval: 10
-    bulk_flush_interval: 10
+  - type: amqp
+    urls: ["amqp://test:test@localhost:5672/"]
+    exchange: logs_direct
+    exchange_type: "fanout"
+    exchange_durable: true
+    exchange_auto_delete: false
+    bind_queues: ["hh", "kk"]
+    queue_durable: true
 
